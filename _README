@@ -1,0 +1,29 @@
+#
+# FINAL SYNC
+#
+__THE_CUT__ = "SELECT MAX(date_created) FROM bad_ip";
+mysqldump --databases X --table Y --where="date_created > __THE_CUT__"
+
+#
+# AUDITS
+#
+SELECT count(*), MAX(date_created) 
+FROM bad_ip
+WHERE date_created >= '2012-04-19' 
+  AND date_created < DATE_ADD('2012-04-19', INTERVAL 1 DAY)
+
+
+SELECT count(*), MAX(date_created) 
+FROM bad_ip_archive_201204
+WHERE date_created >= '2012-04-19' 
+  AND date_created < DATE_ADD('2012-04-19', INTERVAL 1 DAY):
+
+#
+# HANDY
+#
+# (UNTESTED) -- dump all of last month into csv file
+SELECT * from bap_ip WHERE date_created >= DATE_SUB(DATE_FORMAT("Y-m"), INTERVAL 1 MONTH) AND date_created < DATE_FORMAT("Y-m")
+INTO OUTFILE 'lastmonth_bad_ip.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
