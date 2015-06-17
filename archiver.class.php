@@ -12,9 +12,9 @@ class Archiver {
 		$this->date_field = $date_field;
 
     if (is_array($connOrInfo)) {
-      $host   = $connOrInfo['host']; // localhost
-      $user   = $connOrInfo['user']; // pcm_adminuser
-      $pass   = $connOrInfo['pass']; // killallbadip$
+      $host   = $connOrInfo['host']; 
+      $user   = $connOrInfo['user']; 
+      $pass   = $connOrInfo['pass'];  
 			try {
 	      $this->conn = new mysqli($host, $user, $pass, $this->db);
 			}
